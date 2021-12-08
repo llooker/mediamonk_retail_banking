@@ -4,6 +4,7 @@ view: client {
 
   dimension: client_id {
     primary_key: yes
+    tags : ["google-ads-uid"]
     type: number
     sql: ${TABLE}.client_id ;;
     value_format_name: id
