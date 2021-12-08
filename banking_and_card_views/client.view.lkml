@@ -15,6 +15,7 @@ view: client {
   }
 
   dimension: first_name {
+    tags : ["google-ads-first"]
     hidden: yes
     type: string
     sql: ${TABLE}.first_name ;;
@@ -22,6 +23,7 @@ view: client {
 
   dimension:last_name {
     hidden: yes
+    tags : ["google-ads-last"]
     type: string
     sql: ${TABLE}.last_name ;;
   }
@@ -94,18 +96,21 @@ view: client {
 
   dimension: street {
     group_label: "Address"
+    tags : ["google-ads-street"]
     type: string
     sql: ${TABLE}.street ;;
   }
 
   dimension: city {
     group_label: "Address"
+    tags : ["google-ads-city"]
     type: string
     sql: SPLIT(${TABLE}.address,'|')[OFFSET(0)] ;;
   }
 
   dimension: state {
     map_layer_name: us_states
+    tags : ["google-ads-state"]
     group_label: "Address"
     type: string
     sql: SPLIT(${TABLE}.address,'|')[OFFSET(1)] ;;
@@ -113,6 +118,7 @@ view: client {
 
   dimension: zip {
     group_label: "Address"
+    tags : ["google-ads-postal"]
     type: zipcode
     sql: SPLIT(${TABLE}.address,'|')[OFFSET(2)] ;;
     }
