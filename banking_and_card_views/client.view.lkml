@@ -16,7 +16,7 @@ view: client {
   }
 
   dimension: first_name {
-    tags : ["google-ads-first"]
+    # tags : ["google-ads-first"]
     hidden: yes
     type: string
     sql: ${TABLE}.first_name ;;
@@ -24,7 +24,7 @@ view: client {
 
   dimension:last_name {
     hidden: yes
-    tags : ["google-ads-last"]
+    # tags : ["google-ads-last"]
     type: string
     sql: ${TABLE}.last_name ;;
   }
@@ -97,7 +97,7 @@ view: client {
 
   dimension: street {
     group_label: "Address"
-    tags : ["google-ads-street"]
+    # tags : ["google-ads-street"]
     type: string
     sql: ${TABLE}.street ;;
   }
@@ -111,7 +111,7 @@ view: client {
 
   dimension: state {
     map_layer_name: us_states
-    tags : ["google-ads-state"]
+    # tags : ["google-ads-state"]
     group_label: "Address"
     type: string
     sql: SPLIT(${TABLE}.address,'|')[OFFSET(1)] ;;
@@ -119,7 +119,7 @@ view: client {
 
   dimension: zip {
     group_label: "Address"
-    tags : ["google-ads-postal"]
+    # tags : ["google-ads-postal"]
     type: zipcode
     sql: SPLIT(${TABLE}.address,'|')[OFFSET(2)] ;;
     }
@@ -268,6 +268,55 @@ view: client {
     value_format_name: percent_2
     sql: 1.0*${number_of_clients_with_loans}/NULLIF(${number_of_clients},0) ;;
   }
+
+
+  dimension: first_name_first {
+    tags : ["google-ads-first"]
+    hidden: yes
+    type: string
+    sql: ${TABLE}.first_name ;;
+  }
+
+  dimension:last_name_last {
+    hidden: yes
+    tags : ["google-ads-last"]
+    type: string
+    sql: ${TABLE}.last_name ;;
+  }
+
+  dimension: street_street {
+    group_label: "Address"
+    tags : ["google-ads-street"]
+    type: string
+    sql: ${TABLE}.street ;;
+  }
+
+  dimension: city_city {
+    group_label: "Address"
+    tags : ["google-ads-city"]
+    type: string
+    sql: SPLIT(${TABLE}.address,'|')[OFFSET(0)] ;;
+  }
+
+  dimension: state_state {
+    map_layer_name: us_states
+    tags : ["google-ads-state"]
+    group_label: "Address"
+    type: string
+    sql: SPLIT(${TABLE}.address,'|')[OFFSET(1)] ;;
+  }
+
+
+  dimension: zip_postal {
+    group_label: "Address"
+    tags : ["google-ads-postal"]
+    type: zipcode
+    sql: SPLIT(${TABLE}.address,'|')[OFFSET(2)] ;;
+  }
+
+
+
+
 
   dimension: days_since_account_creation {
     description: "The days since they created a brokerage account, until they signed up for the credit card"
