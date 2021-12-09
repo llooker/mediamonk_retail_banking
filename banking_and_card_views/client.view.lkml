@@ -104,7 +104,7 @@ view: client {
 
   dimension: city {
     group_label: "Address"
-    tags : ["google-ads-city"]
+    # tags : ["google-ads-city"]
     type: string
     sql: SPLIT(${TABLE}.address,'|')[OFFSET(0)] ;;
   }
