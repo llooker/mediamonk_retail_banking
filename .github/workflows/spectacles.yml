@@ -29,13 +29,13 @@ jobs:
         python setup.py install
     - name: SQL Tests
       run: |
-        echo "Testing SQL for pull request from ${{ github.head_ref }}" 
+        echo "Testing SQL for pull request from ${GITHUB_HEAD_REF}" 
         spectacles sql \
           --base-url https://${{ env.HOST }}.looker.com/ \
           --client-id ${{ secrets.CLIENT_ID }} \
           --client-secret ${{ secrets.CLIENT_SECRET }} \
           --project ${{ env.PROJECT_NAME }} \
-          --branch `if [ -z "${{ github.head_ref }}" ]; then echo master; else echo ${{ github.head_ref }}; fi` \
+          --branch `if [ -z "${GITHUB_HEAD_REF}" ]; then echo master; else echo ${GITHUB_HEAD_REF}; fi` \
           --remote-reset 
     - name: slack_notify_success
       if: success()
